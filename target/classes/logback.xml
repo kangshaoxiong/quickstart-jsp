@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="1800 seconds"
+	debug="false">
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<!-- 设置文件存放路径 -->
+	<property name="USER_HOME" value="logs" />
+	<!-- 设置文件名称 -->
+	<property scope="context" name="FILE_NAME" value="quickstart-log" />
+	<!-- 时间格式 -->
+	<timestamp key="byDay" datePattern="yyyy-MM-dd" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<charset>UTF-8</charset> <!-- 此处设置字符集 -->
+		</encoder>
+	</appender>
+
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+			<charset>UTF-8</charset> <!-- 此处设置字符集 -->
+		</encoder>
+		<file>${USER_HOME}/${FILE_NAME}.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<!-- rollover daily 配置日志所生成的目录以及生成文件名的规则以及压缩 -->
+			<fileNamePattern>${USER_HOME}/${byDay}/${FILE_NAME}-${byDay}-%i.log.zip
+			</fileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>10</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<maxFileSize>10MB</maxFileSize>
+		</triggeringPolicy>
+	</appender>
+	<!-- 配置mybatis日志，name映射的是mybatis配置文件中的logPrefix值 -->
+	<logger name="repository" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="com.my.quickstart" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</logger>
+	<!-- 配置项目输出日志 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>   

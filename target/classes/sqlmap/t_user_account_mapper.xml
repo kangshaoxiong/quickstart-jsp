@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserAccountRepositoryMybatis">
+
+	<select id="findByIdAndUsername" parameterType="Long" resultType="UserAccount">
+		select * from t_user_account t where t.id = #{id} and t.username =
+		'100102'
+	</select>
+	<sql id="do_query_where">
+		<where>
+			<if test="username!=null and username!=''"> and t.username = #{username}</if>
+			<if test="email !=null and email!=''"> and t.email like concat('%',#{email},'%')</if>
+			<if test="nickname !=null and nickname!=''"> and t.nickname like concat('%',#{nickname},'%') </if>
+			<if test="mobile !=null and mobile !=''"> and t.mobile = #{mobile}</if>
+		</where>
+	</sql>
+	<select id="findPageData" parameterType="Map" resultType="UserAccount">
+		SELECT * from t_user_account t
+		<include refid="do_query_where"></include>
+		order by t.${sort.sortBy} ${sort.sortType}
+		limit #{preEndNum},#{pageSize}
+	</select>
+	<select id="findPageCount" parameterType="Map" resultType="int">
+		SELECT count(1) from t_user_account t
+		<include refid="do_query_where"></include>
+	</select>
+</mapper>

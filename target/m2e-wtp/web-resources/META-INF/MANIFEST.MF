@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-Title: quickstart Maven Webapp
+Implementation-Version: 0.1.0
+Implementation-Vendor-Id: com.my
+Build-Jdk: 1.7.0_60
+Built-By: l
+Created-By: Maven Integration for Eclipse
+
