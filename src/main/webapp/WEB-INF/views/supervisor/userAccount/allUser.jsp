@@ -8,6 +8,7 @@
 <title>所有用户</title>
 </head>
 <body>
+<div title="首页" data-options="iconCls:'icon-pencil',closable:true" style="padding:10px">
 <table >
 	<thead >
 		<tr >
@@ -31,5 +32,6 @@
 		</c:forEach>
     </tbody>
 </table>
+</div>
 </body>
 </html>

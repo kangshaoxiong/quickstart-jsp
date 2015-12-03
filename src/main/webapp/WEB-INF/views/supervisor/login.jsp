@@ -12,7 +12,7 @@
 <c:if test="${sessionScope.SPRING_SECURITY_LAST_EXCEPTION!=null}">
 	<h3><font color="red">${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}</font></h3>
 </c:if>
-<form action="/login" method="POST">
+<form action="/supervisor/login" method="POST">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<table>
 		<thead>

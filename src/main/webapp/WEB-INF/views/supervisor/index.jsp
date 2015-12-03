@@ -7,9 +7,12 @@
 <title>首页</title>
 </head>
 <body>
-    <h1>你好：Hello World !</h1>
+    <!-- <h1>你好：Hello World !</h1>
 	用户记录访问链接：<a href="userAccount/list">/userAccount/list</a><br/>
 	查询所有用户：<a href="userAccount/allUser">userAccount/allUser</a><br/>
-	用户记录添加链接：<a href="userAccount/add">/userAccount/add</a><br/>
+	用户记录添加链接：<a href="userAccount/add">/userAccount/add</a><br/> -->
+	<div title="首页" data-options="iconCls:'icon-pencil',closable:true" style="padding:10px">
+    	<h1>你好：Hello !</h1>
+	</div>
 </body>
 </html>
