@@ -1,4 +1,4 @@
-package com.my.quickstart.web;
+package com.my.quickstart.web.supervisor;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +29,7 @@ import com.my.quickstart.util.Servlets;
  *
  */
 @Controller
-@RequestMapping(value="/userAccount")
+@RequestMapping(value="/supervisor/userAccount")
 public class AccountController extends BaseController {
 
 	@Autowired
@@ -51,14 +51,14 @@ public class AccountController extends BaseController {
 		model.addAllAttributes(searchParams);
 		// 将搜索条件编码成字符串，用于排序，分页的URL
 		model.addAttribute("searchParams", Servlets.encodeParameterStringWithPrefix(searchParams,Constant.QUERY_PRFIX));
-		return "userAccount/list";
+		return "/supervisor/userAccount/list";
 	}
 	
 	@RequestMapping(value="/allUser")
 	String allUser(Model model){
 		List<UserAccount> allUser=userAccountService.findAll();
 		model.addAttribute("all", allUser);
-		return "userAccount/allUser";
+		return "/supervisor/userAccount/allUser";
 	}
 	/**
 	 * 添加账号信息
@@ -70,7 +70,7 @@ public class AccountController extends BaseController {
 		if(!model.containsAttribute("userAccountValid")){
 			model.addAttribute("userAccountValid",new UserAccount());
 		}
-		return "userAccount/add";
+		return "/supervisor/userAccount/add";
 	}
 	/**
 	 * 保存数据
@@ -86,6 +86,6 @@ public class AccountController extends BaseController {
 		if(defaultResult.isFailure()){
 			return "redirect:"+ExceptionConstant.PAGE_400;
 		}
-		return "redirect:/userAccount/list";
+		return "redirect:/supervisor/userAccount/list";
 	}
 }

@@ -105,10 +105,10 @@ public class SecurityConfig{
 	        .authorizeRequests()
 	            //设置不拦截规则
 	            .antMatchers("/static/**","/robots.txt").permitAll()                
-	            .antMatchers("/admin/**").hasRole("ADMIN") 
-	            .antMatchers("/userAccount/**")
+	            //指定的url需要一直特定的角色
+	            .antMatchers("/admin/**").hasRole("ADMIN") 	            
 	            //只要有里面设置的任意一个角色/权限
-	            .hasAnyAuthority("ROLE_USER")
+	            .antMatchers("/supervisor/userAccount/**").hasAnyAuthority("ROLE_USER")
 	            .anyRequest()
 	            //认证
 	            .authenticated() 
@@ -116,9 +116,9 @@ public class SecurityConfig{
 	            .and()
 				.formLogin()
 				//自定义登陆页面
-				.loginPage("/login").permitAll()
+				.loginPage("/supervisor/login").permitAll()
 				//默认登陆成功的路径
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/supervisor/index")
 				//登陆成功后执行的操作
 				.successHandler(loginSuccessHandler())
 				//登陆失败后执行的操作
@@ -127,7 +127,7 @@ public class SecurityConfig{
 				.and()
 				.logout()
 				//退出成功后的路径
-				.logoutSuccessUrl("/login").permitAll()
+				.logoutSuccessUrl("/supervisor/login").permitAll()
 				//退出成功后执行的操作
 				.logoutSuccessHandler(logoutSuccessHandler())
 	

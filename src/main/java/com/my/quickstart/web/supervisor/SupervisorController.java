@@ -1,4 +1,4 @@
-package com.my.quickstart.web;
+package com.my.quickstart.web.supervisor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +17,8 @@ import com.my.quickstart.util.UserContextHolder;
  *
  */
 @Controller
-@RequestMapping(value="/")
-public class IndexController extends BaseController {
+@RequestMapping(value="/supervisor")
+public class SupervisorController extends BaseController {
 	
 	@Autowired
 	private TestAsync1 testAsync1;
@@ -30,17 +30,17 @@ public class IndexController extends BaseController {
 	@ExceptionHandler
 	public String login(Model model){
 		if(UserContextHolder.isLogin()){
-			return "redirect:/";
+			return "redirect:/supervisor/index";
 		}
-		return "login";
+		return "/supervisor/login";
 	}
 	
-	@RequestMapping()
+	@RequestMapping(value="/index")
 	public String index() throws InterruptedException{
 		long v=globalSequence.nextValue();
 		System.out.println("v="+v);
 		testAsync1.doAsync();
 		logger.info("index..........");
-		return "index";
+		return "/supervisor/index";
 	}
 }

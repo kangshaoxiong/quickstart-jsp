@@ -23,7 +23,7 @@ public class LoginFailHandler extends SimpleUrlAuthenticationFailureHandler {
 			HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
 		logger.info("登录失败后的处理。。。");
-		super.setDefaultFailureUrl("/login");
+		super.setDefaultFailureUrl("/supervisor/login");
 		super.onAuthenticationFailure(request, response, exception);
 	}
 }
