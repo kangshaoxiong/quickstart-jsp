@@ -37,10 +37,17 @@ public class SupervisorController extends BaseController {
 	
 	@RequestMapping(value="/index")
 	public String index() throws InterruptedException{
-		long v=globalSequence.nextValue();
-		System.out.println("v="+v);
-		testAsync1.doAsync();
-		logger.info("index..........");
+		/*long v=globalSequence.nextValue();
+		System.out.println("v="+v);*/
+		//TODO  获取菜单权限信息
+		
 		return "/supervisor/index";
+	}
+	
+	@RequestMapping(value="/home")
+	public String home(){
+		//展示首页信息
+		System.out.println("显示首页信息");
+		return "/supervisor/home";
 	}
 }

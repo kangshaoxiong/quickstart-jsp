@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/WEB-INF/layouts/">
+	<!-- 配置无需映入头尾的配置 -->
 	<excludes>
 		<pattern>/static/*</pattern>
-		<pattern>/supervisor/login</pattern>
-		<pattern>/supervisor/login?error=true</pattern>
 	</excludes>
 	
 	<decorator name="frontMain" page="frontMain.jsp">
-		<pattern>/*</pattern>
 		<pattern>/front/*</pattern>
 	</decorator>
- 	<decorator name="supervisorMain" page="supervisorMain.jsp">
-		<pattern>/supervisor/*</pattern>
-	</decorator>
+	<!-- 后台：需要引入头尾的配置(后台使用前端框架实现该功能) -->
+ 	<!-- <decorator name="supervisorMain" page="supervisorMain.jsp">
+		<pattern>/supervisor/index</pattern>
+	</decorator> -->
 	
 </decorators>

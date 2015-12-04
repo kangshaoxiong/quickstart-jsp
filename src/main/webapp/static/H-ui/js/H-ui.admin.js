@@ -152,7 +152,7 @@ $(function(){
 	$("#Hui-skin .dropDown-menu a").click(function(){
 		var v = $(this).attr("data-val");
 		setCookie("Huiskin", v);
-		$("#skin").attr("href","skin/"+v+"/skin.css");
+		$("#skin").attr("href","/static/H-ui/skin/"+v+"/skin.css");
 	});
 }); 
 /*弹出层*/
